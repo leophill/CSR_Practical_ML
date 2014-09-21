@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>SYNOPSIS</title>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<hr/>
+
+<h2>SYNOPSIS</h2>
+
+<p>This analysis is about classifying how well weight lifters performed exercises and build a model to predict future outcomes based on a number of predictor variables. The data was generated from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. The data for this project came from this <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a>.</p>
+
+<p>The goal of this project is to predict the manner in which participants did the exercise. This is represented by the &ldquo;classe&rdquo; variable in the training set. The model prediction model built will be used to predict 20 different test cases. </p>
+
+<h2>DATA PROCESSING</h2>
+
+<p>###1. RAW DATA</p>
+
+<p>The raw data for this project are csv files available at the following locations:
+<a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv">Training data: https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv</a>
+<a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv">Testing  data: https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv</a></p>
+
+<p>###2. DATA LOADING &amp; PRE-PROCESSING</p>
+
+<p>The data load assumes that both csv files were downloaded and stored in the current working directory, whose value can be obtained by the <code>getwd()</code> R command. The data is then loaded into various data frames using the <code>read.scv</code> R command.</p>
+
+<pre><code class="r"># set global chunk options: images will be 24x10 inches
+knitr::opts_chunk$set(cache=TRUE, echo=TRUE, message=FALSE, fig.width=24, fig.height=10)
+</code></pre>
+
+<h3>Setting up the R environment</h3>
+
+<pre><code class="r"># Clearing the cache
+rm(list = ls())
+
+# Loading required libraries
+if ((!require(e1071)) | (!require(randomForest)) | (!require(caret))) install.packages(&#39;e1071&#39;, &#39;randomForest&#39;, &#39;caret&#39;)
+</code></pre>
+
+<h3>Loading and preprocessing the data</h3>
+
+<pre><code class="r"># Set working directoy here for csv file loading
+filepath &lt;- getwd()
+
+# Load csv data data frames
+hartrain &lt;- read.csv(paste(filepath, &quot;pml-training.csv&quot;, sep=&quot;/&quot;), na.strings=c(&quot;NA&quot;,&quot;&quot;), strip.white=TRUE)
+hartest &lt;- read.csv(paste(filepath, &quot;pml-testing.csv&quot;, sep=&quot;/&quot;), na.strings=c(&quot;NA&quot;,&quot;&quot;), strip.white=TRUE)
+# str(hartrain)
+</code></pre>
+
+<p>Once the data is loaded, it is important to explore the main fields of interest in the training set needed to answer the questions under investigation. But some initial cleaning needs to be done first.
+First, columns with 5% or more null values are removed from the data frame.
+<strong>From 160 columns, the total number of columns got reduced to 60.</strong></p>
+
+<pre><code class="r"># Data Cleanup - Remove columns with 5% or more NA values from training set
+# From 160 columns, we are left with only 60
+
+hartrain &lt;- hartrain[,colSums(is.na(hartrain))&lt; 0.05 * nrow(hartrain)]
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<pre><code class="r">(ncols &lt;- ncol(hartrain))
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<p>The next step consists in the exploration of remaining columns to identified possible columns to remove from the data frame as they might not contribute to final outcome.</p>
+
+<pre><code class="r"># Display storm data and structure
+head(hartrain)
+</code></pre>
+
+<pre><code>##   X user_name raw_timestamp_part_1 raw_timestamp_part_2   cvtd_timestamp
+## 1 1  carlitos           1323084231               788290 05/12/2011 11:23
+## 2 2  carlitos           1323084231               808298 05/12/2011 11:23
+## 3 3  carlitos           1323084231               820366 05/12/2011 11:23
+## 4 4  carlitos           1323084232               120339 05/12/2011 11:23
+## 5 5  carlitos           1323084232               196328 05/12/2011 11:23
+## 6 6  carlitos           1323084232               304277 05/12/2011 11:23
+##   new_window num_window roll_belt pitch_belt yaw_belt total_accel_belt
+## 1         no         11      1.41       8.07    -94.4                3
+## 2         no         11      1.41       8.07    -94.4                3
+## 3         no         11      1.42       8.07    -94.4                3
+## 4         no         12      1.48       8.05    -94.4                3
+## 5         no         12      1.48       8.07    -94.4                3
+## 6         no         12      1.45       8.06    -94.4                3
+##   kurtosis_roll_belt kurtosis_picth_belt kurtosis_yaw_belt
+## 1               &lt;NA&gt;                &lt;NA&gt;              &lt;NA&gt;
+## 2               &lt;NA&gt;                &lt;NA&gt;              &lt;NA&gt;
+## 3               &lt;NA&gt;                &lt;NA&gt;              &lt;NA&gt;
+## 4               &lt;NA&gt;                &lt;NA&gt;              &lt;NA&gt;
+## 5               &lt;NA&gt;                &lt;NA&gt;              &lt;NA&gt;
+## 6               &lt;NA&gt;                &lt;NA&gt;              &lt;NA&gt;
+##   skewness_roll_belt skewness_roll_belt.1 skewness_yaw_belt max_roll_belt
+## 1               &lt;NA&gt;                 &lt;NA&gt;              &lt;NA&gt;            NA
+## 2               &lt;NA&gt;                 &lt;NA&gt;              &lt;NA&gt;            NA
+## 3               &lt;NA&gt;                 &lt;NA&gt;              &lt;NA&gt;            NA
+## 4               &lt;NA&gt;                 &lt;NA&gt;              &lt;NA&gt;            NA
+## 5               &lt;NA&gt;                 &lt;NA&gt;              &lt;NA&gt;            NA
+## 6               &lt;NA&gt;                 &lt;NA&gt;              &lt;NA&gt;            NA
+##   max_picth_belt max_yaw_belt min_roll_belt min_pitch_belt min_yaw_belt
+## 1             NA         &lt;NA&gt;            NA             NA         &lt;NA&gt;
+## 2             NA         &lt;NA&gt;            NA             NA         &lt;NA&gt;
+## 3             NA         &lt;NA&gt;            NA             NA         &lt;NA&gt;
+## 4             NA         &lt;NA&gt;            NA             NA         &lt;NA&gt;
+## 5             NA         &lt;NA&gt;            NA             NA         &lt;NA&gt;
+## 6             NA         &lt;NA&gt;            NA             NA         &lt;NA&gt;
+##   amplitude_roll_belt amplitude_pitch_belt amplitude_yaw_belt
+## 1                  NA                   NA               &lt;NA&gt;
+## 2                  NA                   NA               &lt;NA&gt;
+## 3                  NA                   NA               &lt;NA&gt;
+## 4                  NA                   NA               &lt;NA&gt;
+## 5                  NA                   NA               &lt;NA&gt;
+## 6                  NA                   NA               &lt;NA&gt;
+##   var_total_accel_belt avg_roll_belt stddev_roll_belt var_roll_belt
+## 1                   NA            NA               NA            NA
+## 2                   NA            NA               NA            NA
+## 3                   NA            NA               NA            NA
+## 4                   NA            NA               NA            NA
+## 5                   NA            NA               NA            NA
+## 6                   NA            NA               NA            NA
+##   avg_pitch_belt stddev_pitch_belt var_pitch_belt avg_yaw_belt
+## 1             NA                NA             NA           NA
+## 2             NA                NA             NA           NA
+## 3             NA                NA             NA           NA
+## 4             NA                NA             NA           NA
+## 5             NA                NA             NA           NA
+## 6             NA                NA             NA           NA
+##   stddev_yaw_belt var_yaw_belt gyros_belt_x gyros_belt_y gyros_belt_z
+## 1              NA           NA         0.00         0.00        -0.02
+## 2              NA           NA         0.02         0.00        -0.02
+## 3              NA           NA         0.00         0.00        -0.02
+## 4              NA           NA         0.02         0.00        -0.03
+## 5              NA           NA         0.02         0.02        -0.02
+## 6              NA           NA         0.02         0.00        -0.02
+##   accel_belt_x accel_belt_y accel_belt_z magnet_belt_x magnet_belt_y
+## 1          -21            4           22            -3           599
+## 2          -22            4           22            -7           608
+## 3          -20            5           23            -2           600
+## 4          -22            3           21            -6           604
+## 5          -21            2           24            -6           600
+## 6          -21            4           21             0           603
+##   magnet_belt_z roll_arm pitch_arm yaw_arm total_accel_arm var_accel_arm
+## 1          -313     -128      22.5    -161              34            NA
+## 2          -311     -128      22.5    -161              34            NA
+## 3          -305     -128      22.5    -161              34            NA
+## 4          -310     -128      22.1    -161              34            NA
+## 5          -302     -128      22.1    -161              34            NA
+## 6          -312     -128      22.0    -161              34            NA
+##   avg_roll_arm stddev_roll_arm var_roll_arm avg_pitch_arm stddev_pitch_arm
+## 1           NA              NA           NA            NA               NA
+## 2           NA              NA           NA            NA               NA
+## 3           NA              NA           NA            NA               NA
+## 4           NA              NA           NA            NA               NA
+## 5           NA              NA           NA            NA               NA
+## 6           NA              NA           NA            NA               NA
+##   var_pitch_arm avg_yaw_arm stddev_yaw_arm var_yaw_arm gyros_arm_x
+## 1            NA          NA             NA          NA        0.00
+## 2            NA          NA             NA          NA        0.02
+## 3            NA          NA             NA          NA        0.02
+## 4            NA          NA             NA          NA        0.02
+## 5            NA          NA             NA          NA        0.00
+## 6            NA          NA             NA          NA        0.02
+##   gyros_arm_y gyros_arm_z accel_arm_x accel_arm_y accel_arm_z magnet_arm_x
+## 1        0.00       -0.02        -288         109        -123         -368
+## 2       -0.02       -0.02        -290         110        -125         -369
+## 3       -0.02       -0.02        -289         110        -126         -368
+## 4       -0.03        0.02        -289         111        -123         -372
+## 5       -0.03        0.00        -289         111        -123         -374
+## 6       -0.03        0.00        -289         111        -122         -369
+##   magnet_arm_y magnet_arm_z kurtosis_roll_arm kurtosis_picth_arm
+## 1          337          516              &lt;NA&gt;               &lt;NA&gt;
+## 2          337          513              &lt;NA&gt;               &lt;NA&gt;
+## 3          344          513              &lt;NA&gt;               &lt;NA&gt;
+## 4          344          512              &lt;NA&gt;               &lt;NA&gt;
+## 5          337          506              &lt;NA&gt;               &lt;NA&gt;
+## 6          342          513              &lt;NA&gt;               &lt;NA&gt;
+##   kurtosis_yaw_arm skewness_roll_arm skewness_pitch_arm skewness_yaw_arm
+## 1             &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;
+## 2             &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;
+## 3             &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;
+## 4             &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;
+## 5             &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;
+## 6             &lt;NA&gt;              &lt;NA&gt;               &lt;NA&gt;             &lt;NA&gt;
+##   max_roll_arm max_picth_arm max_yaw_arm min_roll_arm min_pitch_arm
+## 1           NA            NA          NA           NA            NA
+## 2           NA            NA          NA           NA            NA
+## 3           NA            NA          NA           NA            NA
+## 4           NA            NA          NA           NA            NA
+## 5           NA            NA          NA           NA            NA
+## 6           NA            NA          NA           NA            NA
+##   min_yaw_arm amplitude_roll_arm amplitude_pitch_arm amplitude_yaw_arm
+## 1          NA                 NA                  NA                NA
+## 2          NA                 NA                  NA                NA
+## 3          NA                 NA                  NA                NA
+## 4          NA                 NA                  NA                NA
+## 5          NA                 NA                  NA                NA
+## 6          NA                 NA                  NA                NA
+##   roll_dumbbell pitch_dumbbell yaw_dumbbell kurtosis_roll_dumbbell
+## 1         13.05         -70.49       -84.87                   &lt;NA&gt;
+## 2         13.13         -70.64       -84.71                   &lt;NA&gt;
+## 3         12.85         -70.28       -85.14                   &lt;NA&gt;
+## 4         13.43         -70.39       -84.87                   &lt;NA&gt;
+## 5         13.38         -70.43       -84.85                   &lt;NA&gt;
+## 6         13.38         -70.82       -84.47                   &lt;NA&gt;
+##   kurtosis_picth_dumbbell kurtosis_yaw_dumbbell skewness_roll_dumbbell
+## 1                    &lt;NA&gt;                  &lt;NA&gt;                   &lt;NA&gt;
+## 2                    &lt;NA&gt;                  &lt;NA&gt;                   &lt;NA&gt;
+## 3                    &lt;NA&gt;                  &lt;NA&gt;                   &lt;NA&gt;
+## 4                    &lt;NA&gt;                  &lt;NA&gt;                   &lt;NA&gt;
+## 5                    &lt;NA&gt;                  &lt;NA&gt;                   &lt;NA&gt;
+## 6                    &lt;NA&gt;                  &lt;NA&gt;                   &lt;NA&gt;
+##   skewness_pitch_dumbbell skewness_yaw_dumbbell max_roll_dumbbell
+## 1                    &lt;NA&gt;                  &lt;NA&gt;                NA
+## 2                    &lt;NA&gt;                  &lt;NA&gt;                NA
+## 3                    &lt;NA&gt;                  &lt;NA&gt;                NA
+## 4                    &lt;NA&gt;                  &lt;NA&gt;                NA
+## 5                    &lt;NA&gt;                  &lt;NA&gt;                NA
+## 6                    &lt;NA&gt;                  &lt;NA&gt;                NA
+##   max_picth_dumbbell max_yaw_dumbbell min_roll_dumbbell min_pitch_dumbbell
+## 1                 NA             &lt;NA&gt;                NA                 NA
+## 2                 NA             &lt;NA&gt;                NA                 NA
+## 3                 NA             &lt;NA&gt;                NA                 NA
+## 4                 NA             &lt;NA&gt;                NA                 NA
+## 5                 NA             &lt;NA&gt;                NA                 NA
+## 6                 NA             &lt;NA&gt;                NA                 NA
+##   min_yaw_dumbbell amplitude_roll_dumbbell amplitude_pitch_dumbbell
+## 1             &lt;NA&gt;                      NA                       NA
+## 2             &lt;NA&gt;                      NA                       NA
+## 3             &lt;NA&gt;                      NA                       NA
+## 4             &lt;NA&gt;                      NA                       NA
+## 5             &lt;NA&gt;                      NA                       NA
+## 6             &lt;NA&gt;                      NA                       NA
+##   amplitude_yaw_dumbbell total_accel_dumbbell var_accel_dumbbell
+## 1                   &lt;NA&gt;                   37                 NA
+## 2                   &lt;NA&gt;                   37                 NA
+## 3                   &lt;NA&gt;                   37                 NA
+## 4                   &lt;NA&gt;                   37                 NA
+## 5                   &lt;NA&gt;                   37                 NA
+## 6                   &lt;NA&gt;                   37                 NA
+##   avg_roll_dumbbell stddev_roll_dumbbell var_roll_dumbbell
+## 1                NA                   NA                NA
+## 2                NA                   NA                NA
+## 3                NA                   NA                NA
+## 4                NA                   NA                NA
+## 5                NA                   NA                NA
+## 6                NA                   NA                NA
+##   avg_pitch_dumbbell stddev_pitch_dumbbell var_pitch_dumbbell
+## 1                 NA                    NA                 NA
+## 2                 NA                    NA                 NA
+## 3                 NA                    NA                 NA
+## 4                 NA                    NA                 NA
+## 5                 NA                    NA                 NA
+## 6                 NA                    NA                 NA
+##   avg_yaw_dumbbell stddev_yaw_dumbbell var_yaw_dumbbell gyros_dumbbell_x
+## 1               NA                  NA               NA                0
+## 2               NA                  NA               NA                0
+## 3               NA                  NA               NA                0
+## 4               NA                  NA               NA                0
+## 5               NA                  NA               NA                0
+## 6               NA                  NA               NA                0
+##   gyros_dumbbell_y gyros_dumbbell_z accel_dumbbell_x accel_dumbbell_y
+## 1            -0.02             0.00             -234               47
+## 2            -0.02             0.00             -233               47
+## 3            -0.02             0.00             -232               46
+## 4            -0.02            -0.02             -232               48
+## 5            -0.02             0.00             -233               48
+## 6            -0.02             0.00             -234               48
+##   accel_dumbbell_z magnet_dumbbell_x magnet_dumbbell_y magnet_dumbbell_z
+## 1             -271              -559               293               -65
+## 2             -269              -555               296               -64
+## 3             -270              -561               298               -63
+## 4             -269              -552               303               -60
+## 5             -270              -554               292               -68
+## 6             -269              -558               294               -66
+##   roll_forearm pitch_forearm yaw_forearm kurtosis_roll_forearm
+## 1         28.4         -63.9        -153                  &lt;NA&gt;
+## 2         28.3         -63.9        -153                  &lt;NA&gt;
+## 3         28.3         -63.9        -152                  &lt;NA&gt;
+## 4         28.1         -63.9        -152                  &lt;NA&gt;
+## 5         28.0         -63.9        -152                  &lt;NA&gt;
+## 6         27.9         -63.9        -152                  &lt;NA&gt;
+##   kurtosis_picth_forearm kurtosis_yaw_forearm skewness_roll_forearm
+## 1                   &lt;NA&gt;                 &lt;NA&gt;                  &lt;NA&gt;
+## 2                   &lt;NA&gt;                 &lt;NA&gt;                  &lt;NA&gt;
+## 3                   &lt;NA&gt;                 &lt;NA&gt;                  &lt;NA&gt;
+## 4                   &lt;NA&gt;                 &lt;NA&gt;                  &lt;NA&gt;
+## 5                   &lt;NA&gt;                 &lt;NA&gt;                  &lt;NA&gt;
+## 6                   &lt;NA&gt;                 &lt;NA&gt;                  &lt;NA&gt;
+##   skewness_pitch_forearm skewness_yaw_forearm max_roll_forearm
+## 1                   &lt;NA&gt;                 &lt;NA&gt;               NA
+## 2                   &lt;NA&gt;                 &lt;NA&gt;               NA
+## 3                   &lt;NA&gt;                 &lt;NA&gt;               NA
+## 4                   &lt;NA&gt;                 &lt;NA&gt;               NA
+## 5                   &lt;NA&gt;                 &lt;NA&gt;               NA
+## 6                   &lt;NA&gt;                 &lt;NA&gt;               NA
+##   max_picth_forearm max_yaw_forearm min_roll_forearm min_pitch_forearm
+## 1                NA            &lt;NA&gt;               NA                NA
+## 2                NA            &lt;NA&gt;               NA                NA
+## 3                NA            &lt;NA&gt;               NA                NA
+## 4                NA            &lt;NA&gt;               NA                NA
+## 5                NA            &lt;NA&gt;               NA                NA
+## 6                NA            &lt;NA&gt;               NA                NA
+##   min_yaw_forearm amplitude_roll_forearm amplitude_pitch_forearm
+## 1            &lt;NA&gt;                     NA                      NA
+## 2            &lt;NA&gt;                     NA                      NA
+## 3            &lt;NA&gt;                     NA                      NA
+## 4            &lt;NA&gt;                     NA                      NA
+## 5            &lt;NA&gt;                     NA                      NA
+## 6            &lt;NA&gt;                     NA                      NA
+##   amplitude_yaw_forearm total_accel_forearm var_accel_forearm
+## 1                  &lt;NA&gt;                  36                NA
+## 2                  &lt;NA&gt;                  36                NA
+## 3                  &lt;NA&gt;                  36                NA
+## 4                  &lt;NA&gt;                  36                NA
+## 5                  &lt;NA&gt;                  36                NA
+## 6                  &lt;NA&gt;                  36                NA
+##   avg_roll_forearm stddev_roll_forearm var_roll_forearm avg_pitch_forearm
+## 1               NA                  NA               NA                NA
+## 2               NA                  NA               NA                NA
+## 3               NA                  NA               NA                NA
+## 4               NA                  NA               NA                NA
+## 5               NA                  NA               NA                NA
+## 6               NA                  NA               NA                NA
+##   stddev_pitch_forearm var_pitch_forearm avg_yaw_forearm
+## 1                   NA                NA              NA
+## 2                   NA                NA              NA
+## 3                   NA                NA              NA
+## 4                   NA                NA              NA
+## 5                   NA                NA              NA
+## 6                   NA                NA              NA
+##   stddev_yaw_forearm var_yaw_forearm gyros_forearm_x gyros_forearm_y
+## 1                 NA              NA            0.03            0.00
+## 2                 NA              NA            0.02            0.00
+## 3                 NA              NA            0.03           -0.02
+## 4                 NA              NA            0.02           -0.02
+## 5                 NA              NA            0.02            0.00
+## 6                 NA              NA            0.02           -0.02
+##   gyros_forearm_z accel_forearm_x accel_forearm_y accel_forearm_z
+## 1           -0.02             192             203            -215
+## 2           -0.02             192             203            -216
+## 3            0.00             196             204            -213
+## 4            0.00             189             206            -214
+## 5           -0.02             189             206            -214
+## 6           -0.03             193             203            -215
+##   magnet_forearm_x magnet_forearm_y magnet_forearm_z classe
+## 1              -17              654              476      A
+## 2              -18              661              473      A
+## 3              -18              658              469      A
+## 4              -16              658              469      A
+## 5              -17              655              473      A
+## 6               -9              660              478      A
+</code></pre>
+
+<p>This initial exploration shows that columns 1 to 7 are unnecessary predictors, and so can be removed.
+Column 1 is an auto-increment column and so is not relevant to the analysis.
+Columns 2 to 7 are text columns and do not contribute to the outcome.</p>
+
+<pre><code class="r"># Removing first 7 columns from the data frame
+hartrain &lt;- hartrain[, -(1:7)]
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<pre><code class="r">(ncols &lt;- ncol(hartrain))
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<p>The <strong>hartrain</strong> data frame is now made of more relevant columns, whose total is 53. With <strong>classe</strong> column being the predicted outcome, the remaining <strong>52</strong> are the predictor variables.</p>
+
+<p>Next, these 52 columns need to be converted to numeric type in order to avoir any errors during processing. </p>
+
+<p>It is also important to check for any missing values left and replace these using the <strong>bagging imputation</strong> method based on existing data in hartrain data frame.</p>
+
+<pre><code class="r"># Convert all columns to numeric except the last one
+
+hartrain [,-ncols] &lt;- data.frame(sapply(hartrain[,-ncols],as.numeric))
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<pre><code class="r"># imput any missing values
+if(any(is.na(hartrain))){
+        hartrain[,-ncols] &lt;- predict(preProcess(hartrain[,-ncols],method=&quot;bagImpute&quot;),hartrain[,-ncols])
+}
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<h2>FEATURE SELECTION</h2>
+
+<p>To aid in the selection of relevant features, a near zero variance analysis can help identify zero and near-zero variance predictors. This is accomplished using the <code>nearZeroVar</code> R function.</p>
+
+<pre><code class="r"># Perform near zero variance analysis and eliminate all features that have NZV
+nZerov &lt;- nearZeroVar(hartrain, saveMetrics = TRUE)
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<pre><code class="r">(ncols &lt;- ncol(hartrain))
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<pre><code class="r">nZerov[nZerov[, &quot;zeroVar&quot;] &gt; 0, ]
+</code></pre>
+
+<pre><code>## Error: object &#39;nZerov&#39; not found
+</code></pre>
+
+<pre><code class="r">nZerov[nZerov[, &quot;zeroVar&quot;]  + nZerov[,&quot;nzv&quot;] &gt; 0, ]
+</code></pre>
+
+<pre><code>## Error: object &#39;nZerov&#39; not found
+</code></pre>
+
+<p>The result of the analysis shows that there is no zero or near-zero variables.
+The final list of features can now be saved in the <strong>features</strong> variable for further use on the testing data.</p>
+
+<pre><code class="r"># Save list of retained features for further user with testing set
+(features &lt;- names(hartrain))
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<h2>DATA PARTITIONING AND MODEL FITTING</h2>
+
+<p>###1. DATA PARTITIONING</p>
+
+<p>Once the list of features of interest is set, the training data set can be further partitioned for cross data validation purposes. Here, 90% of the data willbe kept as training data and 10% to generate the cross validation data once the model is built. For reproducibility, a seed of <strong>1122</strong> will be used.</p>
+
+<pre><code class="r"># Data Partitioning into Training and Cross-Validation using 90/10 proportion
+
+set.seed(1122)
+dpTrainIdx &lt;- createDataPartition(hartrain$classe, p=0.90, list = FALSE)
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<pre><code class="r">dpTrain &lt;- hartrain[dpTrainIdx,]
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<pre><code class="r">dpCrossV &lt;- hartrain[- dpTrainIdx,]
+</code></pre>
+
+<pre><code>## Error: object &#39;hartrain&#39; not found
+</code></pre>
+
+<p>###2. MODEL FITTING</p>
+
+<p>The target model can now be built on the training data set using the <strong>Random Forest</strong> method with a <strong>5-fold cross validation</strong>. This is accomplished using the <code>train()</code> function in the <strong>caret</strong> package.</p>
+
+<pre><code class="r"># Fitting model using Random Forest and 5-fold cross-validation
+harFit &lt;- train(classe ~ ., data = dpTrain, method = &quot;rf&quot;, preProcess = c(&quot;center&quot;, &quot;scale&quot;), prox = TRUE, 
+                importance=TRUE, trControl = trainControl(allowParallel = TRUE, method = &quot;cv&quot;, number = 5, verboseIter=TRUE))
+</code></pre>
+
+<pre><code>## Error: object &#39;dpTrain&#39; not found
+</code></pre>
+
+<h2>CROSS VALIDATION AND MODEL EVALUATION</h2>
+
+<p>Plotting the data from the model shows accuracy (cross validation) per number of randomly selected predictors. This shows an accuracy between 0.989 and 0.994.</p>
+
+<pre><code class="r"># Plotting 
+ggplot(harFit)
+</code></pre>
+
+<pre><code>## Error: object &#39;harFit&#39; not found
+</code></pre>
+
+<p>Using the <code>varImp</code> function on the model, the most important variables of are shown (top 20).</p>
+
+<pre><code class="r"># Evaluation of variable importance (20 most important variables)
+(varHarImp &lt;- varImp(harFit))
+</code></pre>
+
+<pre><code>## Error: object &#39;harFit&#39; not found
+</code></pre>
+
+<p>Next, the cross-validation data obtained earlier (10% of initial training data) can be sampled to generate 50 random observations to serve as validation to the model.</p>
+
+<pre><code class="r"># Cross-Validation and Model evaluation
+(nrcv &lt;- nrow(dpCrossV))
+</code></pre>
+
+<pre><code>## Error: object &#39;dpCrossV&#39; not found
+</code></pre>
+
+<pre><code class="r">(dpCrossV &lt;- dpCrossV[sample(1:nrcv, 50),])
+</code></pre>
+
+<pre><code>## Error: object &#39;dpCrossV&#39; not found
+</code></pre>
+
+<p>A confusion matrix can be generated from the sample and the <strong>out of sample error</strong> can be computed. In this case, it is <strong>0</strong>.</p>
+
+<pre><code class="r">(dpErrors &lt;- confusionMatrix(dpCrossV$classe, predict(harFit, dpCrossV)))
+</code></pre>
+
+<pre><code>## Error: object &#39;dpCrossV&#39; not found
+</code></pre>
+
+<pre><code class="r">(outOfSampleError &lt;- 1 - dpErrors$overall[1])
+</code></pre>
+
+<pre><code>## Error: object &#39;dpErrors&#39; not found
+</code></pre>
+
+<pre><code class="r">(names(outOfSampleError) &lt;- &quot;Out of Sample Error&quot;)
+</code></pre>
+
+<pre><code>## Error: object &#39;outOfSampleError&#39; not found
+</code></pre>
+
+<h2>APPLICATION OF LEARNING ALGORITHM TO TEST CASES</h2>
+
+<p>The above learning algorithm generated on the training data and validated on the cross-validation data, can now be applied to the test cases after preprocessing them.</p>
+
+<p>###1. PREPROCESSING</p>
+
+<p>First, the number of columns in the test data set can be filtered based on retained features on the training set above. Upon filtering, <strong>52</strong> columns are left in the data frame, representing predictors.</p>
+
+<p>Preprocessing operations of converting predictor data to numeric and imputing any missing value in the test data set using bagging, can now be applied to test cases.</p>
+
+<p>Finally, the <strong>classe</strong> column can be added to the test data frame. This is initialized to null values (NA).</p>
+
+<pre><code class="r"># Classification of test data after preprocessing the data
+dpTest &lt;- hartest[names(hartest) %in% features]
+</code></pre>
+
+<pre><code>## Error: object &#39;hartest&#39; not found
+</code></pre>
+
+<pre><code class="r">(ncols &lt;- ncol(dpTest))
+</code></pre>
+
+<pre><code>## Error: object &#39;dpTest&#39; not found
+</code></pre>
+
+<pre><code class="r"># Convert all columns to numeric
+dpTest &lt;- data.frame(sapply(dpTest,as.numeric))
+</code></pre>
+
+<pre><code>## Error: object &#39;dpTest&#39; not found
+</code></pre>
+
+<pre><code class="r"># imput any missing values
+if(any(is.na(dpTest))){
+        dpTest &lt;- predict(preProcess(dpTest, method=&quot;bagImpute&quot;), dpTest)
+}
+</code></pre>
+
+<pre><code>## Error: object &#39;dpTest&#39; not found
+</code></pre>
+
+<pre><code class="r"># Add classe column to test data frame, initialized to null values
+(dpTest$classe &lt;- rep(NA, nrow(dpTest)))
+</code></pre>
+
+<pre><code>## Error: object &#39;dpTest&#39; not found
+</code></pre>
+
+<p>###2. APPLICATION OF LEARNING ALGORITHM</p>
+
+<p>The learning algorithm can now be applied to the test cases yielding a character vector as a result of prediction.</p>
+
+<pre><code class="r"># application of training model to test cases
+(answers &lt;- predict(harFit, dpTest))
+</code></pre>
+
+<pre><code>## Error: object &#39;harFit&#39; not found
+</code></pre>
+
+<p>###3. GENERATION OF PREDICTION FILES</p>
+
+<p>Finally, using the file generation function provided in the course, the predicted values are stored in individually genrated files.</p>
+
+<pre><code class="r"># prediction files on test cases
+pml_write_files = function(x){
+        n = length(x)
+        for(i in 1:n){
+                filename = paste0(&quot;problem_id_&quot;,i,&quot;.txt&quot;)
+                write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
+        }
+}
+
+pml_write_files(answers)
+</code></pre>
+
+<pre><code>## Error: object &#39;answers&#39; not found
+</code></pre>
+
+</body>
+
+</html>

@@ -1,0 +1,232 @@
+---
+title: "HUMAN ACTIVITY RECOGNITION: WEIGHT LIFTING EXERCISE CLASSIFICATION AND PREDICTION REPORT"
+author: "Leopold Hillah"
+date: "Sunday, September 21st, 2014"
+output: html_document
+---
+
+---
+## SYNOPSIS
+
+This analysis is about classifying how well weight lifters performed exercises and build a model to predict future outcomes based on a number of predictor variables. The data was generated from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. The data for this project came from this [http://groupware.les.inf.puc-rio.br/har](http://groupware.les.inf.puc-rio.br/har).
+
+The goal of this project is to predict the manner in which participants did the exercise. This is represented by the "classe" variable in the training set. The model prediction model built will be used to predict 20 different test cases. 
+
+
+## DATA PROCESSING
+
+###1. RAW DATA
+
+The raw data for this project are csv files available at the following locations:
+- [Training data: https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv](https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv)
+- [Testing  data: https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv](https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv)
+
+###2. DATA LOADING & PRE-PROCESSING
+
+The data load assumes that both csv files were downloaded and stored in the current working directory, whose value can be obtained by the `getwd()` R command. The data is then loaded into various data frames using the `read.scv` R command.
+  
+```{r global_config}
+# set global chunk options: images will be 24x10 inches
+knitr::opts_chunk$set(cache=TRUE, echo=TRUE, message=FALSE, fig.width=24, fig.height=10)
+```
+
+### Setting up the R environment
+
+```{r setting_the_environment}
+# Clearing the cache
+rm(list = ls())
+ 
+# Loading required libraries
+if ((!require(e1071)) | (!require(randomForest)) | (!require(caret))) install.packages('e1071', 'randomForest', 'caret')
+
+```
+ 
+### Loading and preprocessing the data
+
+```{r data_load_processing}
+# Set working directoy here for csv file loading
+filepath <- getwd()
+
+# Load csv data data frames
+hartrain <- read.csv(paste(filepath, "pml-training.csv", sep="/"), na.strings=c("NA",""), strip.white=TRUE)
+hartest <- read.csv(paste(filepath, "pml-testing.csv", sep="/"), na.strings=c("NA",""), strip.white=TRUE)
+# str(hartrain)
+``` 
+
+Once the data is loaded, it is important to explore the main fields of interest in the training set needed to answer the questions under investigation. But some initial cleaning needs to be done first.
+First, columns with 5% or more null values are removed from the data frame.
+**From 160 columns, the total number of columns got reduced to 60.**
+
+```{r data_cleaning}
+# Data Cleanup - Remove columns with 5% or more NA values from training set
+# From 160 columns, we are left with only 60
+
+hartrain <- hartrain[,colSums(is.na(hartrain))< 0.05 * nrow(hartrain)]
+(ncols <- ncol(hartrain))
+```
+
+The next step consists in the exploration of remaining columns to identified possible columns to remove from the data frame as they might not contribute to final outcome.
+
+```{r data_exploration}
+# Display storm data and structure
+head(hartrain)
+```
+
+This initial exploration shows that columns 1 to 7 are unnecessary predictors, and so can be removed.
+Column 1 is an auto-increment column and so is not relevant to the analysis.
+Columns 2 to 7 are text columns and do not contribute to the outcome.
+ 
+```{r data_cleaning_2}
+# Removing first 7 columns from the data frame
+hartrain <- hartrain[, -(1:7)]
+(ncols <- ncol(hartrain))
+``` 
+
+The **hartrain** data frame is now made of more relevant columns, whose total is 53. With **classe** column being the predicted outcome, the remaining **52** are the predictor variables.
+
+Next, these 52 columns need to be converted to numeric type in order to avoir any errors during processing. 
+
+It is also important to check for any missing values left and replace these using the **bagging imputation** method based on existing data in hartrain data frame.
+
+```{r data_conversion_imputation}
+# Convert all columns to numeric except the last one
+
+hartrain [,-ncols] <- data.frame(sapply(hartrain[,-ncols],as.numeric))
+        
+# imput any missing values
+if(any(is.na(hartrain))){
+        hartrain[,-ncols] <- predict(preProcess(hartrain[,-ncols],method="bagImpute"),hartrain[,-ncols])
+}
+``` 
+
+## FEATURE SELECTION
+
+To aid in the selection of relevant features, a near zero variance analysis can help identify zero and near-zero variance predictors. This is accomplished using the `nearZeroVar` R function.
+
+```{r feature_selection}
+# Perform near zero variance analysis and eliminate all features that have NZV
+nZerov <- nearZeroVar(hartrain, saveMetrics = TRUE)
+(ncols <- ncol(hartrain))
+nZerov[nZerov[, "zeroVar"] > 0, ]
+nZerov[nZerov[, "zeroVar"]  + nZerov[,"nzv"] > 0, ]
+``` 
+
+The result of the analysis shows that there is no zero or near-zero variables.
+The final list of features can now be saved in the **features** variable for further use on the testing data.
+
+```{r final_feature_list}
+# Save list of retained features for further user with testing set
+(features <- names(hartrain))
+``` 
+
+## DATA PARTITIONING AND MODEL FITTING
+
+###1. DATA PARTITIONING
+
+Once the list of features of interest is set, the training data set can be further partitioned for cross data validation purposes. Here, 90% of the data willbe kept as training data and 10% to generate the cross validation data once the model is built. For reproducibility, a seed of **1122** will be used.
+
+```{r data_partitioning}
+# Data Partitioning into Training and Cross-Validation using 90/10 proportion
+
+set.seed(1122)
+dpTrainIdx <- createDataPartition(hartrain$classe, p=0.90, list = FALSE)
+dpTrain <- hartrain[dpTrainIdx,]
+dpCrossV <- hartrain[- dpTrainIdx,]
+``` 
+
+###2. MODEL FITTING
+
+The target model can now be built on the training data set using the **Random Forest** method with a **5-fold cross validation**. This is accomplished using the `train()` function in the **caret** package.
+
+```{r model_fitting}
+# Fitting model using Random Forest and 5-fold cross-validation
+harFit <- train(classe ~ ., data = dpTrain, method = "rf", preProcess = c("center", "scale"), prox = TRUE, 
+                importance=TRUE, trControl = trainControl(allowParallel = TRUE, method = "cv", number = 5, verboseIter=TRUE))
+``` 
+
+## CROSS VALIDATION AND MODEL EVALUATION
+
+Plotting the data from the model shows accuracy (cross validation) per number of randomly selected predictors. This shows an accuracy between 0.989 and 0.994.
+
+```{r model_accuracy_plot}
+# Plotting 
+ggplot(harFit)
+```
+
+Using the `varImp` function on the model, the most important variables of are shown (top 20).
+
+```{r most_important_variables}
+# Evaluation of variable importance (20 most important variables)
+(varHarImp <- varImp(harFit))
+```
+
+Next, the cross-validation data obtained earlier (10% of initial training data) can be sampled to generate 50 random observations to serve as validation to the model.
+
+```{r cv_model_evaluation}
+# Cross-Validation and Model evaluation
+(nrcv <- nrow(dpCrossV))
+(dpCrossV <- dpCrossV[sample(1:nrcv, 50),])
+```
+
+A confusion matrix can be generated from the sample and the **out of sample error** can be computed. In this case, it is **0**.
+
+```{r confusion_marix_out_of_sample_error}
+(dpErrors <- confusionMatrix(dpCrossV$classe, predict(harFit, dpCrossV)))
+(outOfSampleError <- 1 - dpErrors$overall[1])
+(names(outOfSampleError) <- "Out of Sample Error")
+```
+
+## APPLICATION OF LEARNING ALGORITHM TO TEST CASES
+
+The above learning algorithm generated on the training data and validated on the cross-validation data, can now be applied to the test cases after preprocessing them.
+
+###1. PREPROCESSING
+
+First, the number of columns in the test data set can be filtered based on retained features on the training set above. Upon filtering, **52** columns are left in the data frame, representing predictors.
+
+Preprocessing operations of converting predictor data to numeric and imputing any missing value in the test data set using bagging, can now be applied to test cases.
+
+Finally, the **classe** column can be added to the test data frame. This is initialized to null values (NA).
+
+```{r test_cases_preprocessing}
+# Classification of test data after preprocessing the data
+dpTest <- hartest[names(hartest) %in% features]
+(ncols <- ncol(dpTest))
+
+# Convert all columns to numeric
+dpTest <- data.frame(sapply(dpTest,as.numeric))
+
+# imput any missing values
+if(any(is.na(dpTest))){
+        dpTest <- predict(preProcess(dpTest, method="bagImpute"), dpTest)
+}
+
+# Add classe column to test data frame, initialized to null values
+(dpTest$classe <- rep(NA, nrow(dpTest)))
+```
+
+###2. APPLICATION OF LEARNING ALGORITHM
+
+The learning algorithm can now be applied to the test cases yielding a character vector as a result of prediction.
+
+```{r learning_algorithm_on_test}
+# application of training model to test cases
+(answers <- predict(harFit, dpTest))
+```
+
+###3. GENERATION OF PREDICTION FILES
+
+Finally, using the file generation function provided in the course, the predicted values are stored in individually genrated files.
+
+```{r prediction_files_generation}
+# prediction files on test cases
+pml_write_files = function(x){
+        n = length(x)
+        for(i in 1:n){
+                filename = paste0("problem_id_",i,".txt")
+                write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
+        }
+}
+
+pml_write_files(answers)
+```
