@@ -27,7 +27,7 @@ The data load assumes that both csv files were downloaded and stored in the curr
   
 ```{r global_config}
 # set global chunk options: images will be 24x10 inches
-knitr::opts_chunk$set(cache=TRUE, echo=TRUE, message=FALSE, fig.width=24, fig.height=10)
+knitr::opts_chunk$set(cache.lazy=FALSE, echo=TRUE, message=FALSE, fig.width=24, fig.height=10)
 ```
 
 ### Setting up the R environment
